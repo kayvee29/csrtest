@@ -3,24 +3,27 @@
 properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 
 // Env Config
-[$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: ""],
-[$class: 'hudson.model.StringParameterDefinition', name: 'CURRENT_ENV', defaultValue: ""]
+[$class: 'hudson.model.StringParameterDefinition', name: 'PARAMETER1', defaultValue: ""],
+[$class: 'hudson.model.StringParameterDefinition', name: 'PARAMETER2', defaultValue: ""]
 ]]])
 
 node("master") {
-	withEnv(["PATH=${env.PATH}:${tool 'python37'}", "PY_HOME=${tool 'python37'}"]) {
-    echo "PATH= ${PATH}"
+	withPythonEnv("${tool 'python37'}") {
     stage('Checkout') {
       checkout scm
     }
-    stage('Compile') {
+    stage('Django Setup') {
       echo "Executing Step1"
+      bat "pip install django"
+      bat "pip install -r testing-requirements.txt"
     }
     stage('UnitTest') {
-      echo "Executing Step2"
+      echo "UnitTesting starts here..."
+      bat "pytest"
     }
     stage('Code Coverage') {
-      echo "Executing Step3"
+      echo "Code Coverage starts here..."
+      bat "pytest --cov=. --cov-report=html"
     }
     stage('step4') {
       echo "Executing Step4"
