@@ -11,13 +11,13 @@ node("master") {
   stage('Checkout') {
     checkout scm
   }
-  stage('step1') {
+  stage('Compile') {
     echo "Executing Step1"
   }
-  stage('step2') {
+  stage('UnitTest') {
     echo "Executing Step2"
   }
-  stage('step3') {
+  stage('Code Coverage') {
     echo "Executing Step3"
   }
   stage('step4') {
