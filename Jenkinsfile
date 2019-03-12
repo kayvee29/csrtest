@@ -8,22 +8,26 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-  stage('Checkout') {
-    checkout scm
+	withEnv(["PATH=${env.PATH}:${tool 'python37'}/bin", "PY_HOME=${tool 'python37'}"]) {
+    echo "PATH= ${PATH}"
+    stage('Checkout') {
+      checkout scm
+    }
+    stage('Compile') {
+      echo "Executing Step1"
+    }
+    stage('UnitTest') {
+      echo "Executing Step2"
+    }
+    stage('Code Coverage') {
+      echo "Executing Step3"
+    }
+    stage('step4') {
+      echo "Executing Step4"
+    }
+    stage('step5') {
+      echo "Executing Step5"
+    }
   }
-  stage('Compile') {
-    echo "Executing Step1"
-  }
-  stage('UnitTest') {
-    echo "Executing Step2"
-  }
-  stage('Code Coverage') {
-    echo "Executing Step3"
-  }
-  stage('step4') {
-    echo "Executing Step4"
-  }
-  stage('step5') {
-    echo "Executing Step5"
-  }
+
 }
