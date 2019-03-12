@@ -8,6 +8,9 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
+  stage('Checkout') {
+    checkout scm
+  }
   stage('step1') {
     echo "Executing Step1"
   }
