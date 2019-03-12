@@ -8,7 +8,7 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	withEnv(["PATH=${env.PATH}:${tool 'python37'}/bin", "PY_HOME=${tool 'python37'}"]) {
+	withEnv(["PATH=${env.PATH}:${tool 'python37'}", "PY_HOME=${tool 'python37'}"]) {
     echo "PATH= ${PATH}"
     stage('Checkout') {
       checkout scm
