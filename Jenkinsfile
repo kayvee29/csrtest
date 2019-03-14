@@ -8,7 +8,7 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	withEnv("${tool 'ansible'}") {
+	withEnv(["PATH=${env.PATH}:${tool 'ansible'}", "ANSIBLE_HOME=${tool 'ansible'}"]) {
     stage('Checkout') {
       checkout scm
     }
@@ -18,11 +18,9 @@ node("master") {
     }
     stage('UnitTest') {
       echo "UnitTesting starts here..."
-      bat "pytest"
     }
     stage('Code Coverage') {
       echo "Code Coverage starts here..."
-      bat "pytest --cov=. --cov-report=html"
     }
     stage('step4') {
       echo "Executing Step4"
