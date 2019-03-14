@@ -3,8 +3,8 @@
 properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 
 // Env Config
-[$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: ""],
-[$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: ""]
+[$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "", description: "Please enter the phase of the project, GENERATION or EXECUTION"],
+[$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "", description: "Please enter the environment details"]
 ]]])
 
 node("master") {
