@@ -1,0 +1,9 @@
+---
+
+- name: Running the csrtool playbook
+  hosts: webserver
+  become: True
+  gather_facts: True
+
+  roles:
+   - csrtool

@@ -9,17 +9,18 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 
 node("master") {
 	withEnv(["PATH=${env.PATH}:${tool 'ansible'}", "ANSIBLE_HOME=${tool 'ansible'}"]) {
+
     stage('Checkout') {
       checkout scm
     }
-    stage('Django Setup') {
+    stage('step1') {
       echo "Executing Step1"
-      sh "ansible --version"
+      ansiblePlaybook credentialsId: 'private_key', inventory: '/etc/ansible/hosts', playbook: 'ansible/deploy.yml'
     }
-    stage('UnitTest') {
+    stage('step2') {
       echo "UnitTesting starts here..."
     }
-    stage('Code Coverage') {
+    stage('step3') {
       echo "Code Coverage starts here..."
     }
     stage('step4') {
