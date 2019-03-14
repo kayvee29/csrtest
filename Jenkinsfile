@@ -8,14 +8,13 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	withPythonEnv("${tool 'python37'}") {
+	withPythonEnv("${tool 'ansible'}") {
     stage('Checkout') {
       checkout scm
     }
     stage('Django Setup') {
       echo "Executing Step1"
-      bat "pip install django"
-      bat "pip install -r testing-requirements.txt"
+      sh "ansible --version"
     }
     stage('UnitTest') {
       echo "UnitTesting starts here..."
