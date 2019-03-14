@@ -8,7 +8,7 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	withPythonEnv("${tool 'ansible'}") {
+	withEnv("${tool 'ansible'}") {
     stage('Checkout') {
       checkout scm
     }
