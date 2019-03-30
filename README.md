@@ -36,6 +36,8 @@ Default test runner: py.test -> OK
  - Run -> Run... ->  Edit Configuratinos... -> + -> Python tests -> py.test -> Name: pytest -> OK
 
  - Run -> 'pytest'
+ 
+ 
 
 ### How this project was created
 ```bash
@@ -55,3 +57,6 @@ python manage.py migrate
 
 The Django Test Driven Development Cookbook:
 - https://www.youtube.com/watch?v=41ek3VNx_6Q
+
+
+EXTRA STUFF
