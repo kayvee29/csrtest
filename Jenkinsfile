@@ -8,7 +8,6 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	withEnv(["PATH=${env.PATH}:${tool 'ansible'}", "ANSIBLE_HOME=${tool 'ansible'}"]) {
 		stage('Checkout') {
 			checkout scm
 		}
@@ -41,6 +40,5 @@ node("master") {
 					echo "Source cleanup destination migration..."
 				}
 			}
-  }
 
 }
